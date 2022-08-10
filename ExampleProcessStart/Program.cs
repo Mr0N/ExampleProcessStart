@@ -21,7 +21,8 @@ static class Info
 { 
     public static void CheckException(this Process process)
     {
-        if (string.IsNullOrEmpty(process.StandardError.ReadToEnd()))
-            throw new Exception();
+        string exception = process.StandardError.ReadToEnd();
+        if (string.IsNullOrEmpty(exception))
+            throw new Exception(exception);
     }
 }
